@@ -33,5 +33,23 @@ public class Main{
             results.add(service.submit(task));
         }
 
+        long combinedCount = 0;
+        for (Future<Long> result : results)
+        {
+            try
+            {
+                combinedCount += result.get();
+            } catch (InterruptedException | ExecutionException ex)
+            {
+                System.err.println("Error obtaining thread result: " + ex.getMessage());
+            }
+        }
+
+        service.shutdown();
+        long finish = System.nanoTime();
+        long timeTaken = (finish - start) / 1_000_000;
+
+        System.out.println("Count" + combinedCount);
+        System.out.println("Time: " + timeTaken + " ms");
     }
 }
