@@ -51,5 +51,17 @@ public class Main{
 
         System.out.println("Count" + combinedCount);
         System.out.println("Time: " + timeTaken + " ms");
+
+
+        long count = 0;
+        start = System.nanoTime();
+
+        for (int i = 0; i < 1000000000; i++) {
+            count++;
+        }
+
+        finish = System.nanoTime();
+        timeTaken = (finish - start) / 1_000_000;
+        System.out.println("Time: " + timeTaken + " ms");
     }
 }
